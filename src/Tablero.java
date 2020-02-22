@@ -23,7 +23,8 @@ public class Tablero {
             armarTaleroRompecabeza();
         }
     }
-        private void armarTaleroRompecabeza() {
+
+    public void armarTaleroRompecabeza() {
         tablero = new Ficha[tamano][tamano];
         int index = 1;
         for (int x = 0; x < tamano; x++) {
@@ -33,23 +34,7 @@ public class Tablero {
             }
         }
     }
-    @Override
-    public String toString() {
-        String espacio = " ";
-        String res = "";
-        for (int x = 0; x < tamano; x++) {
-            for (int y = 0; y < tamano; y++) {
-                Ficha temp = tablero[x][y];
-                if (temp.getValor() < 10) {
-                    res += espacio;
-                }
-                res += "" + temp.getValor();
-                res += espacio;
-            }
-            res += "\n";
-        }
-        return res;
-    }
+
     public String posiblesMovimientosFicha0() {
         String res = "";
         Ficha[] movimientos = mostrarFichasVecinas(ficha);
@@ -60,6 +45,7 @@ public class Tablero {
         }
         return res;
     }
+
     public String[] posiblesMovimientosString() {
         String[] res;
         int index = 0;
@@ -79,6 +65,7 @@ public class Tablero {
         }
         return res;
     }
+
     public void realizarMovimiento(String Direccion) {
         Ficha[] movimientosLegales = mostrarFichasVecinas(ficha);
         switch (Direccion) {
@@ -109,13 +96,15 @@ public class Tablero {
         }
 
     }
+
     public void ingresarFicha(Ficha ingreso) {
         tablero[ingreso.getCoordenadaX()][ingreso.getCoordenadaY()] = ingreso;
         if (ingreso.getValor() == 0) {
             ficha = ingreso;
         }
     }
-    private void intercambiarFichas(Ficha fichaDestino, Ficha fichaOrigen) {
+
+    public void intercambiarFichas(Ficha fichaDestino, Ficha fichaOrigen) {
         fichaOrigen.setValor(fichaDestino.getValor());
         fichaDestino.setValor(0);
         ingresarFicha(fichaDestino);
@@ -124,23 +113,25 @@ public class Tablero {
             ficha = fichaDestino;
         }
     }
-    private Ficha[] mostrarFichasVecinas(Ficha actual) {
+
+    public Ficha[] mostrarFichasVecinas(Ficha actual) {
         Ficha[] movimientos = new Ficha[4];
         if (movimientoValido(actual.getCoordenadaX() - 1, actual.getCoordenadaY())) {
-            movimientos[0] = tablero[actual.getCoordenadaX() - 1][actual.getCoordenadaY()];   
+            movimientos[0] = tablero[actual.getCoordenadaX() - 1][actual.getCoordenadaY()];
         }
         if (movimientoValido(actual.getCoordenadaX(), actual.getCoordenadaY() - 1)) {
-            movimientos[1] = tablero[actual.getCoordenadaX()][actual.getCoordenadaY() - 1];   
+            movimientos[1] = tablero[actual.getCoordenadaX()][actual.getCoordenadaY() - 1];
         }
         if (movimientoValido(actual.getCoordenadaX(), actual.getCoordenadaY() + 1)) {
-            movimientos[2] = tablero[actual.getCoordenadaX()][actual.getCoordenadaY() + 1];  
+            movimientos[2] = tablero[actual.getCoordenadaX()][actual.getCoordenadaY() + 1];
         }
         if (movimientoValido(actual.getCoordenadaX() + 1, actual.getCoordenadaY())) {
-            movimientos[3] = tablero[actual.getCoordenadaX() + 1][actual.getCoordenadaY()];  
+            movimientos[3] = tablero[actual.getCoordenadaX() + 1][actual.getCoordenadaY()];
         }
         return movimientos;
     }
-    private boolean movimientoValido(int x, int y) {
+
+    public boolean movimientoValido(int x, int y) {
         if (x < 0 || x >= tamano) {
             return false;
         }
@@ -149,15 +140,13 @@ public class Tablero {
         }
         return true;
     }
+
     public boolean verificarMatrizPerfecta(int n) {
         double sq = Math.sqrt(n);
         return ((sq - Math.floor(sq)) == 0);
     }
 
-
-
-    //Segun una direccion literal segun un valor entero   
-    private String direccionString(int n) {
+    public String direccionString(int n) {
         String resultado = "";
         switch (n) {
             case 0:
@@ -174,5 +163,23 @@ public class Tablero {
                 break;
         }
         return resultado;
+    }
+
+    @Override
+    public String toString() {
+        String espacio = " ";
+        String res = "";
+        for (int x = 0; x < tamano; x++) {
+            for (int y = 0; y < tamano; y++) {
+                Ficha temp = tablero[x][y];
+                if (temp.getValor() < 10) {
+                    res += espacio;
+                }
+                res += "" + temp.getValor();
+                res += espacio;
+            }
+            res += "\n";
+        }
+        return res;
     }
 }
