@@ -12,14 +12,14 @@ import org.junit.Test;
  * @author roland
  */
 public class TableroTest {
-////    @Test
-////    public void creacionDelTableroTest() {
-////        Tablero tablero = new Tablero(15);
-////        String tableroEsperado = " 1  2  3  4 \n 5  6  7  8 \n 9 10 11 12\n 13 14 15  ";
-////        String tableroObtenido = tablero.toString();
-////        assertEquals(tableroEsperado , tableroObtenido);
-////
-////    }
+    @Test
+    public void creacionDelTableroTest() {
+        Tablero tablero = new Tablero(15);
+        String tableroEsperado = " 1  2  3  4 \n 5  6  7  8 \n 9 10 11 12\n 13 14 15  ";
+        String tableroObtenido = tablero.toString();
+        assertEquals(tableroEsperado, tableroObtenido);
+
+    }
 
     @Test
     public void verificarMatrizPerfectaTest() {
